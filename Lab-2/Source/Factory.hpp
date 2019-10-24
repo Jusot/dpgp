@@ -22,7 +22,11 @@ class Factory
 
 class SamsungFactory : public Factory
 {
+  public:
+    std::unique_ptr<CPU> createCPU()
+    {
 
+    }
 };
 
 class IntelFactory : public Factory
