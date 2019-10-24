@@ -14,39 +14,14 @@ class Computer
   public:
     Computer(std::unique_ptr<CPU> cpu,
         std::unique_ptr<Memory> memory,
-        std::unique_ptr<Mainboard> mainboard)
-      : cpu_(std::move(cpu)),
-        memory_(std::move(memory)),
-        mainboard_(std::move(mainboard_)),
-        uid_(-1)
-    {
-        // ...
-    }
+        std::unique_ptr<Mainboard> mainboard);
 
-    const CPU &getCPU()
-    {
-        return *cpu_;
-    }
+    const CPU &getCPU();
+    const Memory &getMemory();
+    const Mainboard &getMainboard();
 
-    const Memory &getMemory()
-    {
-        return *memory_;
-    }
-
-    const Mainboard &getMainboard()
-    {
-        return *mainboard_;
-    }
-
-    std::size_t getUID()
-    {
-        return uid_;
-    }
-
-    void setUID(std::size_t uid)
-    {
-        uid_ = uid;
-    }
+    std::size_t getUID();
+    void setUID(std::size_t uid);
 
   private:
     std::unique_ptr<CPU> cpu_;
@@ -60,12 +35,7 @@ class PC : public Computer
   public:
     PC(std::unique_ptr<CPU> cpu,
         std::unique_ptr<Memory> memory,
-        std::unique_ptr<Mainboard> mainboard)
-      : Computer(std::move(cpu), std::move(memory),
-            std::move(mainboard))
-    {
-        // ...
-    }
+        std::unique_ptr<Mainboard> mainboard);
 };
 
 class Laptop : public Computer
@@ -73,11 +43,6 @@ class Laptop : public Computer
   public:
     Laptop(std::unique_ptr<CPU> cpu,
         std::unique_ptr<Memory> memory,
-        std::unique_ptr<Mainboard> mainboard)
-      : Computer(std::move(cpu), std::move(memory),
-            std::move(mainboard))
-    {
-        // ...
-    }
+        std::unique_ptr<Mainboard> mainboard);
 };
 } // namespace Lab2

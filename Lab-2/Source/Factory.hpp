@@ -23,14 +23,16 @@ class Factory
 class SamsungFactory : public Factory
 {
   public:
-    std::unique_ptr<CPU> createCPU()
-    {
-
-    }
+    std::unique_ptr<CPU> createCPU() override;
+    std::unique_ptr<Memory> createMemroy() override;
+    std::unique_ptr<Mainboard> createMainboard() override;
 };
 
 class IntelFactory : public Factory
 {
-
+  public:
+    std::unique_ptr<CPU> createCPU() override;
+    std::unique_ptr<Memory> createMemroy() override;
+    std::unique_ptr<Mainboard> createMainboard() override;
 };
 } // namespace Lab2

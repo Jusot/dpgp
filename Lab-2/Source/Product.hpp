@@ -29,9 +29,6 @@ class Mainboard
 class SamsungCPU : public CPU
 {
   public:
-    void runTest() override
-    {
-        // ...
-    }
+    void runTest() override;
 };
 } // namespace Lab2
