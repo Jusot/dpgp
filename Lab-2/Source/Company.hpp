@@ -10,18 +10,7 @@ class Laptop;
 class Company
 {
   public:
-    virtual ~Company() = default;
-    virtual std::unique_ptr<PC> orderPC(/* args */) = 0;
-    virtual std::unique_ptr<Laptop> orderLaptop(/* args */) = 0;
-};
-
-class CompanyA : public Company
-{
-
-};
-
-class CompanyB : public Company
-{
-
+    std::unique_ptr<PC> orderPC(/* args */);
+    std::unique_ptr<Laptop> orderLaptop(/* args */);
 };
 } // namespace Lab2
