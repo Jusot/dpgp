@@ -40,19 +40,19 @@ void Computer::setUID(std::size_t uid)
     uid_ = uid;
 }
 
-PC::PC(std::unique_ptr<CPU> cpu,
-    std::unique_ptr<Memory> memory,
+PC::PC(std::vector<std::unique_ptr<CPU>> cpus,
+    std::vector<std::shared_ptr<Memory>> memories,
     std::unique_ptr<Mainboard> mainboard)
-    : Computer(std::move(cpu), std::move(memory),
+    : Computer(std::move(cpus), std::move(memories),
         std::move(mainboard))
 {
     // ...
 }
 
-Laptop::Laptop(std::unique_ptr<CPU> cpu,
-    std::unique_ptr<Memory> memory,
+Laptop::Laptop(std::vector<std::unique_ptr<CPU>> cpus,
+    std::vector<std::shared_ptr<Memory>> memories,
     std::unique_ptr<Mainboard> mainboard)
-    : Computer(std::move(cpu), std::move(memory),
+    : Computer(std::move(cpus), std::move(memories),
         std::move(mainboard))
 {
     // ...
