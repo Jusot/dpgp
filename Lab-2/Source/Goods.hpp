@@ -2,6 +2,7 @@
 
 #include <memory>
 #include <vector>
+#include <string>
 #include <utility>
 
 namespace Lab2
@@ -13,38 +14,61 @@ class Mainboard;
 class Computer
 {
   public:
-    Computer(std::vector<std::unique_ptr<CPU>> cpu,
-        std::vector<std::shared_ptr<Memory>> memories,
-        std::unique_ptr<Mainboard> mainboard);
+    virtual ~Computer() = 0;
 
-    const std::vector<std::unique_ptr<CPU>> &getCPUs();
-    const std::vector<std::shared_ptr<Memory>> &getMemories();
-    const Mainboard &getMainboard();
+    virtual std::vector<std::shared_ptr<CPU>> getCPUs();
+    virtual std::vector<std::shared_ptr<Memory>> getMemories();
+    virtual std::shared_ptr<Mainboard> getMainboard();
 
     std::size_t getUID();
     void setUID(std::size_t uid);
 
   private:
-
-    std::vector<std::unique_ptr<CPU>> cpus_;
-    std::vector<std::shared_ptr<Memory>> memories_;
-    std::unique_ptr<Mainboard> mainboard_;
     std::size_t uid_;
 };
 
-class PC : public Computer
+class PC : public Computer {};
+class Laptop : public Computer {};
+
+enum class Builder
 {
-  public:
-    PC(std::vector<std::unique_ptr<CPU>> cpus,
-        std::vector<std::shared_ptr<Memory>> memories,
-        std::unique_ptr<Mainboard> mainboard);
+    SAMSUNG,
+    INTEL
 };
 
-class Laptop : public Computer
+class AddCPU : public Computer
 {
   public:
-    Laptop(std::vector<std::unique_ptr<CPU>> cpus,
-        std::vector<std::shared_ptr<Memory>> memories,
-        std::unique_ptr<Mainboard> mainboard);
+    AddCPU(Computer &pre, Builder builder)
+      : pre_(pre), builder_(builder) {}
+    std::vector<std::shared_ptr<CPU>> getCPUs() override;
+
+  private:
+    Computer &pre_;
+    Builder builder_;
+};
+
+class AddMemory : public Computer
+{
+  public:
+    AddMemory(Computer &pre, Builder builder)
+      : pre_(pre), builder_(builder) {}
+    std::vector<std::shared_ptr<Memory>> getMemories() override;
+
+  private:
+    Computer &pre_;
+    Builder builder_;
+};
+
+class AddMainboard : public Computer
+{
+  public:
+    AddMainboard(Computer &pre, Builder builder)
+      : pre_(pre), builder_(builder) {}
+    std::shared_ptr<Mainboard> getMainboard() override;
+
+  private:
+    Computer &pre_;
+    Builder builder_;
 };
 } // namespace Lab2
