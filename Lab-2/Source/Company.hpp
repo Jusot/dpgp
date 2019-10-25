@@ -1,7 +1,9 @@
 #pragma once
 
 #include <memory>
+#include <vector>
 #include <string>
+#include "Goods.hpp"
 
 namespace Lab2
 {
@@ -13,26 +15,26 @@ class Company
     virtual ~Company() = default;
 
     virtual std::unique_ptr<Computer>
-    order(int numOfCPUs, std::string nameOfCPU,
-        int numOfMemories, std::string nameOfMemory,
-        std::string nameOfMainboard) = 0;
+    order(vector<Builder> cpus,
+        vector<Builder> memories,
+        Builder mainboard) = 0;
 };
 
 class CompanyA : public Company
 {
   public:
     std::unique_ptr<Computer>
-    order(int numOfCPUs, std::string nameOfCPU,
-        int numOfMemories, std::string nameOfMemory,
-        std::string nameOfMainboard) override;
+    order(vector<Builder> cpus,
+        vector<Builder> memories,
+        Builder mainboard) override;
 };
 
 class CompanyB : public Company
 {
   public:
     std::unique_ptr<Computer>
-    order(int numOfCPUs, std::string nameOfCPU,
-        int numOfMemories, std::string nameOfMemory,
-        std::string nameOfMainboard) override;
+    order(vector<Builder> cpus,
+        vector<Builder> memories,
+        Builder mainboard) override;
 };
 } // namespace Lab2

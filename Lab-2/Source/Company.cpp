@@ -5,17 +5,21 @@ using namespace std;
 namespace Lab2
 {
 unique_ptr<Computer>
-CompanyA::order(int numOfCPUs, std::string nameOfCPU,
-    int numOfMemories, std::string nameOfMemory,
-    std::string nameOfMainboard)
+CompanyA::order(vector<Builder> cpus,
+        vector<Builder> memories,
+        Builder mainboard)
 {
+    auto pc = PC();
+    for (auto cpu : cpus)
+    {
 
+    }
 }
 
 unique_ptr<Computer>
-CompanyB::order(int numOfCPUs, std::string nameOfCPU,
-    int numOfMemories, std::string nameOfMemory,
-    std::string nameOfMainboard)
+CompanyB::order(vector<Builder> cpus,
+        vector<Builder> memories,
+        Builder mainboard)
 {
 
 }
