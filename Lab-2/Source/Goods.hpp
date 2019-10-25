@@ -39,36 +39,36 @@ enum class Builder
 class AddCPU : public Computer
 {
   public:
-    AddCPU(Computer &pre, Builder builder)
-      : pre_(pre), builder_(builder) {}
+    AddCPU(std::unique_ptr<Computer> pre, Builder builder)
+      : pre_(std::move(pre)), builder_(builder) {}
     std::vector<std::shared_ptr<CPU>> getCPUs() override;
 
   private:
-    Computer &pre_;
+    std::unique_ptr<Computer> pre_;
     Builder builder_;
 };
 
 class AddMemory : public Computer
 {
   public:
-    AddMemory(Computer &pre, Builder builder)
-      : pre_(pre), builder_(builder) {}
+    AddMemory(std::unique_ptr<Computer> pre, Builder builder)
+      : pre_(std::move(pre)), builder_(builder) {}
     std::vector<std::shared_ptr<Memory>> getMemories() override;
 
   private:
-    Computer &pre_;
+    std::unique_ptr<Computer> pre_;
     Builder builder_;
 };
 
 class AddMainboard : public Computer
 {
   public:
-    AddMainboard(Computer &pre, Builder builder)
-      : pre_(pre), builder_(builder) {}
+    AddMainboard(std::unique_ptr<Computer> pre, Builder builder)
+      : pre_(std::move(pre)), builder_(builder) {}
     std::shared_ptr<Mainboard> getMainboard() override;
 
   private:
-    Computer &pre_;
+    std::unique_ptr<Computer> pre_;
     Builder builder_;
 };
 } // namespace Lab2

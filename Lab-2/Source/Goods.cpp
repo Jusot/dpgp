@@ -36,7 +36,7 @@ std::shared_ptr<Mainboard> Computer::getMainboard()
 
 vector<shared_ptr<CPU>> AddCPU::getCPUs()
 {
-    auto cpus = pre_.getCPUs();
+    auto cpus = pre_->getCPUs();
     cpus.emplace_back(builder_ == Builder::SAMSUNG
         ? SamsungFactory().createCPU()
         : IntelFactory().createCPU());
@@ -45,7 +45,7 @@ vector<shared_ptr<CPU>> AddCPU::getCPUs()
 
 vector<shared_ptr<Memory>> AddMemory::getMemories()
 {
-    auto memories = pre_.getMemories();
+    auto memories = pre_->getMemories();
     memories.emplace_back(builder_ == Builder::SAMSUNG
         ? SamsungFactory().createMemory()
         : IntelFactory().createMemory());
@@ -54,7 +54,7 @@ vector<shared_ptr<Memory>> AddMemory::getMemories()
 
 shared_ptr<Mainboard> AddMainboard::getMainboard()
 {
-    assert(pre_.getMainboard() == nullptr);
+    assert(pre_->getMainboard() == nullptr);
     return builder_ == Builder::SAMSUNG
         ? SamsungFactory().createMainboard()
         : IntelFactory().createMainboard();
