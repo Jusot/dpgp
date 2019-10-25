@@ -1,6 +1,7 @@
 #pragma once
 
 #include <memory>
+#include <vector>
 #include <utility>
 
 namespace Lab2
@@ -12,20 +13,21 @@ class Mainboard;
 class Computer
 {
   public:
-    Computer(std::unique_ptr<CPU> cpu,
-        std::unique_ptr<Memory> memory,
+    Computer(std::vector<std::unique_ptr<CPU>> cpu,
+        std::vector<std::shared_ptr<Memory>> memories,
         std::unique_ptr<Mainboard> mainboard);
 
-    const CPU &getCPU();
-    const Memory &getMemory();
+    const std::vector<std::unique_ptr<CPU>> &getCPUs();
+    const std::vector<std::shared_ptr<Memory>> &getMemories();
     const Mainboard &getMainboard();
 
     std::size_t getUID();
     void setUID(std::size_t uid);
 
   private:
-    std::unique_ptr<CPU> cpu_;
-    std::unique_ptr<Memory> memory_;
+
+    std::vector<std::unique_ptr<CPU>> cpus_;
+    std::vector<std::shared_ptr<Memory>> memories_;
     std::unique_ptr<Mainboard> mainboard_;
     std::size_t uid_;
 };

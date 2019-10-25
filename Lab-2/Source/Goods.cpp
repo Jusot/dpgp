@@ -4,25 +4,25 @@ using namespace std;
 
 namespace Lab2
 {
-Computer::Computer(std::unique_ptr<CPU> cpu,
-    std::unique_ptr<Memory> memory,
+Computer::Computer(std::vector<std::unique_ptr<CPU>> cpus,
+    std::vector<std::shared_ptr<Memory>> memories,
     std::unique_ptr<Mainboard> mainboard)
-    : cpu_(std::move(cpu)),
-    memory_(std::move(memory)),
+    : cpus_(std::move(cpus)),
+    memories_(std::move(memories)),
     mainboard_(std::move(mainboard_)),
     uid_(-1)
 {
     // ...
 }
 
-const CPU &Computer::getCPU()
+const std::vector<std::unique_ptr<CPU>> &Computer::getCPUs()
 {
-    return *cpu_;
+    return cpus_;
 }
 
-const Memory &Computer::getMemory()
+const std::vector<std::shared_ptr<Memory>> &Computer::getMemories()
 {
-    return *memory_;
+    return memories_;
 }
 
 const Mainboard &Computer::getMainboard()
