@@ -1,5 +1,6 @@
 #pragma once
 
+#include <string>
 #include <memory>
 
 namespace Lab2
@@ -15,7 +16,7 @@ class Factory
     virtual std::unique_ptr<CPU>
     createCPU() = 0;
     virtual std::unique_ptr<Memory>
-    createMemroy() = 0;
+    createMemory() = 0;
     virtual std::unique_ptr<Mainboard>
     createMainboard() = 0;
 };
@@ -24,7 +25,7 @@ class SamsungFactory : public Factory
 {
   public:
     std::unique_ptr<CPU> createCPU() override;
-    std::unique_ptr<Memory> createMemroy() override;
+    std::unique_ptr<Memory> createMemory() override;
     std::unique_ptr<Mainboard> createMainboard() override;
 };
 
@@ -32,7 +33,7 @@ class IntelFactory : public Factory
 {
   public:
     std::unique_ptr<CPU> createCPU() override;
-    std::unique_ptr<Memory> createMemroy() override;
+    std::unique_ptr<Memory> createMemory() override;
     std::unique_ptr<Mainboard> createMainboard() override;
 };
 } // namespace Lab2
