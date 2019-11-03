@@ -5,6 +5,8 @@
 
 namespace Lab2
 {
+
+// decorator class
 class ComputerDecorator : public Computer
 {
 public:
@@ -35,6 +37,8 @@ protected:
     {
         return Computer::get_desc();
     }
+
+    // store base class's pointer
     std::unique_ptr<Computer> computer_;
 };
 

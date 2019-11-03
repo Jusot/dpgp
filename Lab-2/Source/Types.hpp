@@ -5,19 +5,22 @@
 
 namespace Lab2
 {
+// enum of all factories
 enum FactoryEnum
 {
-    FACTORY_INTEL = 0,
+    FACTORY_INTEL,
     FACTORY_SAMSUNG,
 };
 
+// enum of all components
 enum ComponentEnum
 {
-    COMPONENT_CPU = 0,
+    COMPONENT_CPU,
     COMPONENT_MEMORY,
     COMPONENT_MOTHERBOARD,
 };
 
-using order_list_type = std::map<FactoryEnum, std::map<ComponentEnum, size_t>>;
+// use map to store components want to order
+using order_type = std::map<FactoryEnum, std::map<ComponentEnum, size_t>>;
 
 } // namespace Lab2

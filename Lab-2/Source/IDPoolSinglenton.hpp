@@ -4,6 +4,7 @@
 
 namespace Lab2
 {
+// use Siglenton Pattern to produce global unique ID
 class IDPoolSiglenton
 {
 public:
@@ -24,6 +25,7 @@ private:
     size_t id_;
 };
 
+// define a variable in header file with inline to avoid multi definition
 inline IDPoolSiglenton IDPoolSiglenton::unique_id_producer;
 
 } // namespace Lab2

@@ -8,7 +8,7 @@
 #include <type_traits>
 #include "IntelFactory.hpp"
 #include "SamsungFactory.hpp"
-#include "Types.h"
+#include "Types.hpp"
 
 namespace Lab2
 {
@@ -24,7 +24,7 @@ public:
     {
     }
 
-    virtual std::unique_ptr<Computer> order_computer(order_list_type order_map) = 0;
+    virtual std::unique_ptr<Computer> order_computer(order_type order_map) = 0;
 protected:
     IntelFactory& Intel_;
     SamsungFactory& Samsung_;
@@ -42,7 +42,8 @@ public:
     {
     }
 
-    virtual std::unique_ptr<Computer> order_computer(order_list_type order_map) override
+    // purchase components according to the order
+    virtual std::unique_ptr<Computer> order_computer(order_type order_map) override
     {
         std::unique_ptr<Computer> ret(new Product);
         for (size_t i = 0; i < order_map[FACTORY_INTEL][COMPONENT_CPU]; ++i)
