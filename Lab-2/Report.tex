@@ -1,0 +1,166 @@
+\documentclass{article}
+\usepackage{caption}
+\usepackage{graphicx, subfig}
+\usepackage{color}
+\usepackage{xcolor}
+\definecolor{keywordcolor}{rgb}{0.8,0.1,0.5}
+\usepackage{listings}
+\lstset{breaklines}
+\lstset{extendedchars=false}
+\lstset{language=Java,
+	keywordstyle=\color{keywordcolor} \bfseries,
+	identifierstyle=,
+	basicstyle=\ttfamily,
+	commentstyle=\color{blue} \textit,
+	stringstyle=\ttfamily,
+	showstringspaces=false,
+	%frame=shadowbox
+	captionpos=b
+}
+
+\title{LAB-2 Buy A Computer}
+\author{Chen Junhua, Chen Yiyang, Xu Bo}
+\date{}
+
+\begin{document}
+	\maketitle
+
+\section{Task Analysis}
+    From the description of tasks, we can clearly feel that three design patterns can be used. They are factory method pattern, decorator pattern and singleton pattern. There are many entities in the task. We choose to analyze the relationship between them from the perspective of three design patterns
+    
+\subsection{Factory Method Pattern}
+    This is a typical factory pattern. Consumers buy computers from companies, and companies buy computer accessories from factories and assemble them according to customers' orders. All production activities are carried out in the factory, while Intel factory and Samsung factory only produce their own brand of CPU, motherboard and memory.
+    
+    Users have their own ideas about the composition of computers. He doesn't just go to the company to buy a mass-produced computer, so the company can't predict in advance which factory to buy the required accessories, so we exclude the possibility of using the simple factory pattern.
+    
+\subsection{Decorator Pattern}
+    A computer is like a bowl of rice. You have to add all kinds of ingredients to make it a dish. You can add a variety of CPUs and several blocks of memory.
+    
+    What's more, after you have used your computer for a while, you may want to add a new CPU to improve its speed. In this case, each accessory has its own price. In order to get the final cost of an assembled computer, we use the decorator pattern. In this way, it is convenient to add new functions on the basis of the original functions.
+    
+\subsection{Singleton Pattern}
+    Each computer has a unique ID, which is easy to associate with singleton pattern. In order to prevent the ID of this computer from being modified by others, especially when multithreading, it is necessary to design a single
+idpool. There are many government assigned IDs in the ID pool, and the qualified computer will get a unique ID.
+
+\section{Design Scheme}
+    From the overall logic, customer, computer, company and government need to be created. The computer class is a key class, which is divided into PC and laptop, and consists of CPU, memory and motherboard.
+    
+\begin{figure}
+\centering
+\includegraphics[width=.8\textwidth]{Asset/Picture1.png}
+\caption{UML}
+\end{figure}    
+
+\subsection{Factory Method Pattern}
+    There is no doubt that an abstract factory class is required. The only responsibility of the factory class is to produce computer accessories, which are specifically implemented by its subclasses Intel factory and Samsung factory.
+    
+\begin{figure}
+\centering
+\includegraphics[width=.8\textwidth]{Asset/Picture2.png}
+\caption{Take Samsung factory as an example}
+\end{figure}    
+
+\subsection{Decorator Pattern}
+    First, we need a computer class, and two subclasses PC and laptop. In order to use the decorator pattern, we need to create another subclass componentdecorator class of the same level.
+
+    It is worth noting that we implement the getcost() method and getdesc() method in each computer class to implement the decorator pattern.
+    
+\begin{figure}
+\centering
+\includegraphics[width=.8\textwidth]{Asset/Picture3.png}
+\end{figure}    
+\begin{figure}
+\centering
+\includegraphics[width=.8\textwidth]{Asset/Picture4.png}
+\end{figure}    
+\begin{figure}
+\centering
+\includegraphics[width=.8\textwidth]{Asset/Picture5.png}
+\end{figure}    
+
+\subsection{Singleton Pattern}
+    An idpoolsingleton class is designed by double\_check lock.
+    
+    This singleton class creates multiple instances and returns singletons based on the number passed in.
+    
+\begin{figure}
+\centering
+\includegraphics[width=.8\textwidth]{Asset/Picture6.png}
+\end{figure}    
+    
+\subsection{How to Purchase a Computer You Need}
+    First, get the number of CPUs from different manufacturers, and judge whether it is used for PC or laptop.The same for other accessories.
+    
+\begin{figure}
+\centering
+\includegraphics[width=.8\textwidth]{Asset/Picture8.png}
+\end{figure}    
+    
+    Then in company a, we use the factory pattern to get the required CPU, and put it into a computer array kept in company A.
+    
+\begin{figure}
+\centering
+\includegraphics[width=.8\textwidth]{Asset/Picture9.png}
+\end{figure}  
+
+\begin{figure}
+\centering
+\includegraphics[width=.8\textwidth]{Asset/Picture10.png}
+\end{figure}    
+    
+    Finally, after the customer confirms the purchase, assemble all the accessories
+in the company and use the decorator pattern.
+
+\begin{figure}
+\centering
+\includegraphics[width=.8\textwidth]{Asset/Picture11.png}
+\end{figure}    
+    
+    Of course, the PC itself cannot be forgotten.
+    
+\begin{figure}
+\centering
+\includegraphics[width=.8\textwidth]{Asset/Picture12.png}
+\end{figure}    
+    
+\subsection{How to Perform Quality Detection}
+    The government tests every computer. Be careful. Some motherboards and CPUs can't work together. We simply use string character judgment here.
+
+\begin{figure}
+\centering
+\includegraphics[width=.8\textwidth]{Asset/Picture13.png}
+\end{figure}        
+    
+\section{Experimental Result}
+\subsection{Qualified Computer}
+
+\begin{figure}
+\centering
+\includegraphics[width=.8\textwidth]{Asset/Picture14.png}
+\end{figure}    
+
+\begin{figure}
+\centering
+\includegraphics[width=.8\textwidth]{Asset/Picture15.png}
+\end{figure}    
+
+\subsection{Unqualified Computer}
+
+\begin{figure}
+\centering
+\includegraphics[width=.8\textwidth]{Asset/Picture17.png}
+\end{figure}    
+
+\begin{figure}
+\centering
+\includegraphics[width=.8\textwidth]{Asset/Picture16.png}
+\end{figure}    
+
+\section{Conclusion Analysis}
+\subsection{Difficulties and Key Points}
+    The difficulty lies in how to better apply the design patterns we have learned, and to figure out the connections between objects.
+
+\subsection{Group Reflection}
+    This is the first time to complete a lab project in the form of a group. It is also a comprehensive use of various software design patterns. In the process of step-by-step analysis, we have a deeper understanding of the characteristics and use conditions of various modes. We can also learn a lot from group work. From the discussion in the analysis stage to the division of labor in the specific work, we have gained something hard to get from personal work.
+
+\end{document}
