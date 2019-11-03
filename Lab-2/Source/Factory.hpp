@@ -2,38 +2,21 @@
 
 #include <string>
 #include <memory>
+#include <iostream>
+#include "Types.h"
 
 namespace Lab2
 {
-class CPU;
-class Memory;
-class Mainboard;
-
+class Computer;
 class Factory
 {
   public:
     virtual ~Factory() = default;
-    virtual std::unique_ptr<CPU>
-    createCPU() = 0;
-    virtual std::unique_ptr<Memory>
-    createMemory() = 0;
-    virtual std::unique_ptr<Mainboard>
-    createMainboard() = 0;
-};
-
-class SamsungFactory : public Factory
-{
-  public:
-    std::unique_ptr<CPU> createCPU() override;
-    std::unique_ptr<Memory> createMemory() override;
-    std::unique_ptr<Mainboard> createMainboard() override;
-};
-
-class IntelFactory : public Factory
-{
-  public:
-    std::unique_ptr<CPU> createCPU() override;
-    std::unique_ptr<Memory> createMemory() override;
-    std::unique_ptr<Mainboard> createMainboard() override;
+    std::unique_ptr<Computer> order_component(ComponentEnum comp)
+    {
+        auto component = produce_component(comp);
+        return component;
+    }
+    virtual std::unique_ptr<Computer> produce_component(ComponentEnum) = 0;
 };
 } // namespace Lab2
