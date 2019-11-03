@@ -6,6 +6,7 @@
 namespace Lab2
 {
 
+// base class in the Decorator Pattern
 class Computer
 {
 public:
@@ -25,9 +26,7 @@ public:
     {
         desc_.append(str);
     }
-    virtual void set_computer(std::unique_ptr<Computer>&&)
-    {
-    }
+    virtual void set_computer(std::unique_ptr<Computer>&&) { }
     virtual void set_id(const std::string& id) = 0;
 private:
     std::string desc_;

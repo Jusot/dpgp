@@ -4,10 +4,12 @@
 #include <iostream>
 #include "Computer.hpp"
 #include "ComputerDecorator.hpp"
-#include "Types.h"
+#include "Types.hpp"
 
 namespace Lab2
 {
+
+// template class, 
 template<ComponentEnum Comp, FactoryEnum Fac>
 class Component : public ComputerDecorator
 {
@@ -43,13 +45,16 @@ public:
         }
     }
 
+    // add all the costs
     double get_cost() const override
     {
         return computer_->get_cost() + cost_;
     }
 
+    // every component has a certain pass rate
     bool test() const override
     {
+        // use random to simulate the real-world test
         int rand = random() % 100;
         bool pass = rand < (pass_rate_ * 100);
         std::cout << get_raw_desc();
