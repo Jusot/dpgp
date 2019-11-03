@@ -23,11 +23,15 @@ public:
         }
         if (comp->test())
         {
-            comp->set_id(IDPoolSiglenton::get_instance().get_id());
+            std::cout << "All is qualified.\n";
+            auto id = IDPoolSiglenton::get_instance().get_id();
+            comp->set_id(id);
+            std::cout << "Its id is " << id << "\n";
             return true;
         }
         else
         {
+            std::cout << "It is not qualified.\n";
             return false;
         }
     }

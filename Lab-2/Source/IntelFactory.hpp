@@ -23,7 +23,10 @@ public:
         case COMPONENT_MOTHERBOARD:
             return std::unique_ptr<Computer>(new IntelMotherBoard(250, 0.91));
             break;
+        default:
+            break;
         }
+        return std::unique_ptr<Computer>();
     }
 };
 

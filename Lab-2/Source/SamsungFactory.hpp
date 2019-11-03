@@ -25,7 +25,10 @@ public:
         case COMPONENT_MOTHERBOARD:
             return std::unique_ptr<Computer>(new SamsungMotherboard(200, 0.91));
             break;
+        default:
+            break;
         }
+        return std::unique_ptr<Computer>();
     }
 };
 

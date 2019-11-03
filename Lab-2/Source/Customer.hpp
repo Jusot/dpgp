@@ -42,17 +42,7 @@ private:
         auto comp = company->order_computer(order_map);
         std::cout << comp->get_desc() << "\n";
         std::cout << "It cost $" << comp->get_cost() << ".\n";
-        if (test_dept->test(comp.get()))
-        {
-            std::cout << "It is qualified.\n";
-            auto id = IDPoolSiglenton::get_instance().get_id();
-            std::cout << "Its id is " << id << '\n';
-            comp->set_id(id);
-        }
-        else
-        {
-            std::cout << "It is not qualified.\n";
-        }
+        test_dept->test(comp.get());
     }
 };
 
