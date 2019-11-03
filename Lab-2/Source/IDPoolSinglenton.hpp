@@ -14,9 +14,7 @@ public:
 
     std::string get_id()
     {
-        auto id = std::to_string(id_);
-        ++id_;
-        return id;
+        return std::to_string(id_++);
     }
 
 private:
